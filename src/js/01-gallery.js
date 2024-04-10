@@ -26,29 +26,9 @@ document.addEventListener('DOMContentLoaded', function() {
     gallery.appendChild(listItem);
   });
 
-  
   const lightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt', 
     captionDelay: 250 
-  });
-
-  
-  gallery.addEventListener('click', event => {
-    event.preventDefault(); 
-
-    if (event.target.classList.contains('gallery__image')) {
-      const imageSource = event.target.dataset.source;
-
-      const instance = SimpleLightbox.open({
-        content: `<img src="${imageSource}" alt="image" />`
-      });
-
-      document.addEventListener('keydown', event => {
-        if (event.key === 'Escape') {
-          instance.close();
-        }
-      });
-    }
   });
 });
 
