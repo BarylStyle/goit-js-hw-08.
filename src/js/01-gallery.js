@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     captionsData: 'alt', 
     captionDelay: 250 
   });
+  
 });
 
 console.log(galleryItems);

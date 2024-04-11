@@ -7,6 +7,7 @@ if (formDataStr) {
     form.elements.email.value = formData.email;
     form.elements.message.value = formData.message;
 }
+
 form.addEventListener("input", (ev) => {
     const data = {
         email: form.elements.email.value,
@@ -16,22 +17,18 @@ form.addEventListener("input", (ev) => {
 });
 
 const saveDataToStorage = throttle((data) => {
-    localStorage.setItem("feedback-from-state", JSON.stringify(data));
+    localStorage.setItem("feedback-form-state", JSON.stringify(data));
 }, 500);
-input.addEventListener('change', (ev) => {
+
+form.addEventListener('submit', (ev) => {
+    ev.preventDefault();
     const data = {
-        email: ev.target.elements.email.value,
-        message: ev.target.elements.message.value
+        email: form.elements.email.value,
+        message: form.elements.message.value
     };
     saveDataToStorage(data);
-});
-
-form.addEventListener("submit", (ev) => {
-    ev.preventDefault();
-    console.log({
-        email: ev.target.elements.email.value,
-        message: ev.target.elements.message.value
-    });
+    
+    console.log(data);
     localStorage.clear();
     form.reset();
 });
